@@ -28,7 +28,7 @@ const SearchList = () => {
             <h1>Recommendations</h1>
             <TextField
                 type="text"
-                label="Rechercher..."
+                label="Rechercher...."
                 variant="filled"
                 value={searchTerm}
                 onChange={(e) => {
