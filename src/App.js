@@ -1,41 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
-// import AuthLayout from 'layouts/auth';
-// import isAuth from 'helper/isAuth';
-import { connect } from 'react-redux';
-import { Toaster } from 'react-hot-toast';
-import LoginPage from './pages/login.page';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import Login from './pages/login.page';
+import SignUp from './pages/auth.page';
+import SearchList from './pages/SearchList';
+import './App.css';
 
-const App = ({ userAuth }) => {
-  // const [authenticate, setAuthenticate] = useState(false)
-
-  // useEffect(() => {
-  //   setAuthenticate(isAuth());
-  // }, [userAuth]);
-
-  return (
-    <HashRouter>
-      <Toaster position="bottom-center" reverseOrder={false} />
-      {/* {authenticate ? ( */}
-      <Switch>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        {/* <Redirect from='/' to='/admin/dashboard' /> */}
-      </Switch>
-             {/* ) : ( */}
-                 {/* <Switch>
-                     <Route exact path="/auth/login" render={(props) => <AuthLayout {...props} />} />
-                     <Redirect to="/auth/login" />
-                 </Switch> */}
-      {/* )} */}
-    </HashRouter>
-  )
+function App() {
+    return (
+        <Router>
+            <div>
+                <Routes>
+                    <Route path="/" element={<Navigate to="/login" replace />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/search-list" element={<SearchList />} />
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
-const mapStateToProps = ({ LoginReducer }) => ({
-  // userAuth: LoginReducer.userAuth,
-  // loading: LoginReducer.loading,
-  // error: LoginReducer.error,
-});
-
-export default connect(mapStateToProps)(App);
+export default App;
